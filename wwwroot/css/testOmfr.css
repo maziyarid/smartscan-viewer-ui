@@ -1,0 +1,624 @@
+﻿.formModal {
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/page257-0.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.modal-btn {
+    padding: 10px;
+    width: 100px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background-color: dodgerblue;
+}
+/*Modal*/
+.teeth-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    /*   top: 50%;
+    transform: translate(-50%, -50%);*/
+    left: 50%;
+    bottom:63px;
+    transform: translate(-50%, 0%);
+    width: fit-content; /* Full width */
+    height: auto; /* Full height */
+    overflow: visible;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+/* Modal Content*/
+
+    .teeth-modal .teeth-modal-content {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px;
+        padding-left: 10px;
+        min-height: 305px;
+    }
+/* The Close Button */
+
+
+/*Modal*/
+/*content of Modal*/
+.teeth-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+}
+/*teeth menu*/
+.teeth-menu {
+    display: flex;
+}
+
+.vertical-comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-right: 10px;
+}
+
+.remained-comment-tab {
+    margin-bottom: 10px;
+}
+
+.impacted-comment-tab {
+    margin-bottom: 16px;
+}
+
+.periodontal-comment-tab {
+    margin-bottom: 7px;
+}
+
+.comment-svg {
+    fill: #fff;
+    width: 23px;
+    height: 23px;
+}
+
+    .comment-svg:hover {
+        fill: #ffd800 !important;
+    }
+
+.vertical-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    direction: rtl;
+    width: 88px;
+    background-color: black;
+}
+
+.teeth-menu .form-check {
+    margin: .5rem auto;
+}
+
+.teeth-modal .form-check-label {
+    color: #fff;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.vertical-tabs button {
+    background-color: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    color: black;
+    padding: 3px 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s;
+    background-color: #fff;
+    border-bottom: .1px solid black
+}
+
+    .vertical-tabs button:hover {
+        background-color: #ffd800;
+    }
+
+    .vertical-tabs button.active {
+        background-color: #ffd800;
+    }
+/*teeth menu*/
+/*teeth pattern*/
+.teeth-pattern {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 305px;
+    width: 500px
+}
+
+.periapical {
+    display: flex;
+    padding: 15px;
+    margin: 1rem;
+    min-height: 210px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+}
+
+.periapical-adult {
+    position: relative;
+    margin: 70px 0;
+}
+
+.periapical-kid {
+    display: none;
+    position: relative;
+    margin: 70px 0;
+}
+/*menu modal*/
+.menu-modal {
+    position: absolute;
+    top: -152px;
+    display: none;
+    align-items: flex-start;
+    z-index: 1000;
+    padding: 10px;
+    direction: rtl;
+    background-color: #e6e6e6;
+}
+
+.form-check-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 8px;
+}
+
+.menu-modal .form-check-list .form-check-label {
+    float: right;
+    padding-top: 4px;
+    color: black
+}
+
+.menu-modal .form-check-list .form-check-input {
+    float: right
+}
+
+.textarea-container {
+    border: 1px solid #000;
+    width: 304px;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+    .textarea-container .form-check-label {
+        color: black;
+        font-size: 18px;
+    }
+
+.caries-md-checkboxes, .oclbg-checkboxes {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+    .caries-md-checkboxes .form-check {
+        margin-right: .6rem;
+    }
+
+.m-eri-radios, .d-eri-radios {
+    display: none;
+    flex-wrap: wrap;
+    direction: ltr;
+    width: 89px;
+    padding-right : .1rem ;
+    /*for omfr test */
+    padding-left : .1rem ;
+    /*for omfr test */
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.oclbg-checkboxes {
+    justify-content: space-between;
+}
+
+.explain-textarea {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+/*comment holders*/
+.textarea-comment-holders {
+    display: none;
+    border: 1px solid #000;
+    width: 302px;
+    height: auto;
+    padding: 5px;
+}
+
+    .textarea-comment-holders div {
+        display: none;
+        width: 100%;
+    }
+/*menu modal*/
+.active-missing {
+    position: relative;
+}
+
+.teeth-modal .right, .teeth-modal .left {
+    position: absolute;
+    top: 0px;
+    left: -44px;
+    width: 40px;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 3px;
+    border-radius: 7px;
+    color: #fff;
+    background-color: #000;
+    border: 1px solid #c3c3c3;
+    text-align: center;
+}
+
+.teeth-modal .left {
+    right: -44px;
+    left: auto;
+}
+
+.periapical-up, .periapical-down {
+    display: flex;
+    width: fit-content;
+    flex-wrap: nowrap;
+}
+
+.periapical-kids-down, .periapical-kids-up {
+    width: fit-content;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.periapical-up-right, .periapical-down-right {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: 1.5px solid #c3c3c3;
+    padding-right: 10px;
+    width: 50%;
+}
+
+.periapical-up-left, .periapical-down-left {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    border-left: 1.5px solid #c3c3c3;
+    align-items: center;
+    width: 50%;
+}
+
+.teeth-modal .periapical-divider {
+    width: 100%;
+    height: 1px;
+    color: #c3c3c3;
+    opacity: 1;
+    margin: 0;
+}
+
+.periapical-checkbox {
+    display: flex;
+    position: relative;
+}
+
+    .periapical-checkbox .tgl, .periapical-holder, .periodontal-holder, .roots-holder, .impacted-holder {
+        display: none;
+    }
+
+
+        .periapical-checkbox .tgl::-moz-selection,
+        .periapical-checkbox .tgl:after::-moz-selection,
+        .periapical-checkbox .tgl:before::-moz-selection,
+        .periapical-checkbox .tgl *::-moz-selection,
+        .periapical-checkbox .tgl *:after::-moz-selection,
+        .periapical-checkbox .tgl *:before::-moz-selection,
+        .periapical-checkbox .tgl + .tgl-btn::-moz-selection,
+        .periapical-checkbox .tgl::selection,
+        .periapical-checkbox .tgl:after::selection,
+        .periapical-checkbox .tgl:before::selection,
+        .periapical-checkbox .tgl *::selection,
+        .periapical-checkbox .tgl *:after::selection,
+        .periapical-checkbox .tgl *:before::selection,
+        .periapical-checkbox .tgl + .tgl-btn::selection {
+            background: none;
+        }
+
+    .periapical-checkbox .tgl-btn {
+        outline: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.3rem;
+        height: 1.5rem;
+        margin: .1rem;
+        position: relative;
+        color: #000;
+        font-weight: 700;
+        background: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        .periapical-checkbox .tgl-btn:hover {
+            background-color: yellow
+        }
+
+.teeth-modal .active-tab {
+    background-color: yellow !important
+}
+
+.periapical-checkbox .tgl-flip + .tgl-btn {
+    padding: 2px;
+    transition: all 0.2s ease;
+    font-family: sans-serif;
+    perspective: 100px;
+}
+
+
+/*teeth pattern*/
+/*teeth tools*/
+.teeth-modal .close-modal, .teeth-modal .close-menu-modal {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 31px;
+    margin: 1rem;
+    padding-top: 3px;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: red
+}
+
+    .teeth-modal .close-modal:hover,
+    .teeth-modal .close-modal:focus,
+    .teeth-modal .close-menu-modal:hover,
+    .teeth-modal .close-menu-modal:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.teeth-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    background-color: #000;
+}
+
+.tools-btn {
+    width: 84%;
+    padding: 5px 15px;
+    font-size: 12px;
+    margin: 6px;
+    font-weight: 600;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.teeth-modal .save {
+    color: green;
+    border: 2px solid green
+}
+
+.teeth-modal .print {
+    color: #2f75e7;
+    border: 2px solid #2f75e7;
+    opacity:0;
+    cursor : move
+}
+
+.teeth-modal .delete {
+    color: red;
+    border: 2px solid red
+}
+/*teeth tools*/
+
+
+/*content of Modal*/
+
+@media(max-width : 768px) {
+    .teeth-container {
+        align-items: flex-end;
+    }
+
+    .teeth-pattern {
+        width: 335px;
+        min-height: 245px;
+    }
+
+    .teeth-modal .teeth-modal-content {
+        min-height: 265px;
+        padding: 10px;
+    }
+
+    .teeth-tools {
+        width: 50px;
+    }
+
+    .teeth-modal .close-modal {
+        margin: 10px;
+    }
+
+    .tools-btn {
+        width: 90%;
+        padding: 5px 0px;
+        font-size: 11px;
+    }
+
+    .comment-svg {
+        height: 20px;
+        width: 20px
+    }
+
+    .remained-comment-tab {
+        margin-bottom: 4px;
+    }
+
+    .impacted-comment-tab {
+        margin-bottom: 8px;
+    }
+
+    .periodontal-comment-tab {
+        margin-bottom: 5px;
+        height: 22px;
+    }
+
+    .periapical-comment-tab {
+        height: 22px;
+    }
+
+    .textarea-comment-holders {
+        width: 231px
+    }
+
+    .missing-comment-tab, .caries-comment-tab {
+        height: 21px;
+    }
+
+    .periapical-adult, .periapical-kid {
+        margin: 40px 0;
+    }
+
+    .periapical-checkbox .tgl-btn {
+        width: 0.8rem;
+        height: 1.0rem;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+
+    .teeth-modal .right, .teeth-modal .left {
+        left: -26px;
+        width: 21px;
+        font-size: 18px;
+    }
+
+    .teeth-modal .left {
+        right: -26px;
+        left: auto;
+    }
+
+    .vertical-tabs {
+        width: 50px;
+        background-color: transparent;
+    }
+
+        .vertical-tabs button {
+            font-size: 9px;
+            padding: 3px 0;
+        }
+
+    .missing-info {
+        left: 7px !important;
+        font-size: 8px !important;
+    }
+
+    .teeth-modal .form-check-label {
+        font-size: 8px;
+    }
+
+    .teeth-modal .textarea-container {
+        width: 176px;
+    }
+
+    .teeth-menu .form-check-input {
+        margin-left: -.9rem;
+        margin-top: .45rem;
+        width: 12px;
+        height: 12px;
+    }
+
+    .teeth-menu .form-check-label {
+        font-size: 9px;
+        margin-right: -.5rem;
+        padding-left: .2rem;
+    }
+}
+
+@media(max-width : 500px) {
+    .menu-modal {
+        right: -87px;
+    }
+
+    .teeth-pattern {
+        width: 220px;
+        min-height: 245px;
+    }
+
+    .periapical-kid {
+        margin-top: 22px;
+        margin-bottom: 70px
+    }
+
+    .periapical-checkbox .tgl-btn {
+        width: 1.1rem;
+        height: 1.2rem;
+        font-size: 14px;
+    }
+
+
+    .teeth-modal .left {
+        top: 4px;
+        right: -23px;
+        color: rgb(39, 255, 0);
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+
+    .teeth-modal .right {
+        background-color: transparent;
+        top: 4px;
+        left: -23px
+    }
+
+    .periapical-up-right, .periapical-down-right {
+        display: none;
+        width: 100%;
+        padding-right: 0px;
+        border: none;
+    }
+
+    .periapical-up-left, .periapical-down-left {
+        border: none;
+        width: 100%;
+    }
+
+    .missing-info {
+        left: 10px !important;
+        font-size: 7px !important;
+    }
+}
