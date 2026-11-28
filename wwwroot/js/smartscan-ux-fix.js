@@ -240,6 +240,13 @@
     function setAttr(el, name, val) { if (el && el.getAttribute(name) !== val) { el.setAttribute(name, val); } }
 
     function decorate() {
+        // The page can re-create the viewer instance (Blazor re-render), and
+        // the pro skin re-installs its own fit on the new instance: cap it again.
+        var api = window.SmartScanViewer, inst = api && typeof api.get === 'function' ? api.get() : null;
+        if (inst && inst.__ssvProfessionalFit && !inst.__ssvUxFitCap) {
+            capFit(inst);
+            try { inst.fit(); } catch (e) { /* not ready */ }
+        }
         var wide = (window.innerWidth || 0) >= 900;
         var phone = !wide && isTouch();
         var fs = document.querySelector('.ssv-pro-toolbar [data-viewer-action="fullscreen"]:not(.ssv-pro-compat)');
