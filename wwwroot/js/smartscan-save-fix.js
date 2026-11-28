@@ -267,6 +267,16 @@
             if (inst && name === 'save-details') { save(inst, true); return api; }
             return original.apply(api, arguments);
         };
+        // Also cover callers that use the instance directly (toolbar code
+        // inside the viewer, keyboard shortcuts).
+        try {
+            var proto = Object.getPrototypeOf(api.get());
+            if (proto && !proto.__saveFixPatched) {
+                proto.__saveFixPatched = true;
+                proto.save = function () { openSheet(this); };
+                proto.saveWithDetails = function () { return save(this, true); };
+            }
+        } catch (e) { /* ignore */ }
         // Legacy global used by the old markup.
         window.saveImage = function () { api.action('save'); };
         window.SmartScanSaveFix = { version: VERSION, save: function (withDetails) { var i = api.get(); return i ? save(i, !!withDetails) : Promise.resolve('no-viewer'); } };
