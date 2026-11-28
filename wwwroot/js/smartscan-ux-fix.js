@@ -1,4 +1,4 @@
-/* BEGIN SmartScan UX fix v1.0.0 (2026-11-28) - notice close, rotate/flip, touch zoom, layout */
+/* BEGIN SmartScan UX fix v1.0.0 (2026-11-28) - notice close, rotate/flip, touch zoom, layout, Persian date */
 (function () {
     'use strict';
     // Fixes for the patient OPG viewer (smartscan-viewer.js pro skin v2.5.2):
@@ -22,7 +22,7 @@
     //    touch hint text fixed; "fit" shows the whole image.
     // All text is ASCII; Persian is written as \u escapes.
     if (window.__ssvUxFix) { return; }
-    window.__ssvUxFix = { version: '1.0.0' };
+    window.__ssvUxFix = { version: '1.1.0' };
 
     var KEY = 'ssv-notice-dismissed';
     var doc = document.documentElement;
@@ -110,6 +110,15 @@
         proto.__ssvUxPatched = true;
         var cfg = api.config || {};
         var origRotate = proto.rotate, origFlip = proto.flip, origUp = proto._onPointerUp;
+
+        var origDetails = proto._patientDetails;
+        if (typeof origDetails === 'function') {
+            proto._patientDetails = function () {
+                var r = origDetails.apply(this, arguments);
+                if (r && r.date) { var j = toJalali(r.date); if (j) { r.date = j; } }
+                return r;
+            };
+        }
 
         proto._minAllowed = function () {
             var f = this.fitScale();
@@ -232,6 +241,45 @@
         if (st && e.target && st.contains(e.target) && e.cancelable) { e.preventDefault(); }
     }, { passive: false });
 
+
+    // ---- 6. Persian (Jalali) date ------------------------------------
+    // The page prints the scan date as Gregorian M/D/YYYY (en-US server
+    // culture), e.g. 8/10/2025. Show it like the DrB dashboard does:
+    // weekday, day, month name and year in the Persian calendar with
+    // Persian digits. If the first number is above 12 the order is D/M.
+    var DATE_RE = /(\d{1,4})[\/\-.](\d{1,2})[\/\-.](\d{1,4})/;
+    function toJalali(txt) {
+        var m = DATE_RE.exec(txt);
+        if (!m) { return null; }
+        var a = +m[1], b = +m[2], c = +m[3], y, mo, d;
+        if (m[1].length === 4) { y = a; mo = b; d = c; }
+        else { y = c < 100 ? 2000 + c : c; if (a > 12) { d = a; mo = b; } else { mo = a; d = b; } }
+        if (y < 1900 || mo < 1 || mo > 12 || d < 1 || d > 31) { return null; }
+        var dt = new Date(Date.UTC(y, mo - 1, d, 12));
+        if (dt.getUTCMonth() !== mo - 1) { return null; }
+        try {
+            var parts = new Intl.DateTimeFormat('fa-IR-u-ca-persian', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).formatToParts(dt);
+            var P = {};
+            for (var k = 0; k < parts.length; k++) { P[parts[k].type] = parts[k].value; }
+            if (!P.day || !P.month || !P.year) { return null; }
+            var s = (P.weekday ? P.weekday + ' ' : '') + P.day + ' ' + P.month + ' ' + P.year;
+            return txt.replace(m[0], s);
+        } catch (e) { return null; }
+    }
+    function persianDates() {
+        var els = document.querySelectorAll('.ssv-header-date, .navbar a.noLink label');
+        for (var i = 0; i < els.length; i++) {
+            var el = els[i];
+            if (el.children.length) { continue; }
+            var out = toJalali(el.textContent || '');
+            if (out && out !== el.textContent) {
+                el.setAttribute('data-ssv-gregorian', el.textContent);
+                el.textContent = out;
+            }
+        }
+    }
+    window.__ssvUxFix.toJalali = toJalali;
+
     // ---- 5. layout decorations (idempotent) -------------------------
     function isTouch() {
         return !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window);
@@ -247,6 +295,7 @@
             capFit(inst);
             try { inst.fit(); } catch (e) { /* not ready */ }
         }
+        persianDates();
         var wide = (window.innerWidth || 0) >= 900;
         var phone = !wide && isTouch();
         var fs = document.querySelector('.ssv-pro-toolbar [data-viewer-action="fullscreen"]:not(.ssv-pro-compat)');
