@@ -4,7 +4,7 @@
     // Fixes for the patient OPG viewer (smartscan-viewer.js pro skin v2.5.2):
     // 1. Privacy notice: the close button removed the banner, but the pro
     //    skin's MutationObserver re-ran enhance() -> ensureNotice() and put
-    //    it straight back. Dismissal is now remembered for the session and
+    //    it straight back. Dismissal is now remembered on this device (localStorage) and
     //    the banner is hidden with CSS, so re-creating it does nothing.
     // 2. Rotate re-fits the image (it used to overflow the stage); when the
     //    image is zoomed in, rotate and flip keep the same visual centre
@@ -34,8 +34,8 @@
 
     function store(get, val) {
         try {
-            if (get) { return window.sessionStorage.getItem(KEY) === '1'; }
-            window.sessionStorage.setItem(KEY, val ? '1' : '0');
+            if (get) { return window.localStorage.getItem(KEY) === '1'; }
+            window.localStorage.setItem(KEY, val ? '1' : '0');
         } catch (e) { /* storage blocked: fall back to the in-page flag */ }
         return false;
     }
